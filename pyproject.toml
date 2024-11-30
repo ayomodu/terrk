@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "terrk"
+version = "0.1.0"
+description = "a simple cli tool for managing Terraform cloud resources"
+authors = ["ayomodu"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "src" }
+    ]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "8.1.7"
+requests = "2.32.3"
+PyYaml = "6.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+terrk = "src.terrk:cli"

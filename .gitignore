@@ -1,0 +1,15 @@
+*.pyc
+*__pycache__
+*build/
+*.venv
+*DS_store
+*.bead.json
+notes.md
+*.egg-info
+*.coverage
+*dist/
+htmlcov/
+.pytest*
+Scripts
+Lib
+include
