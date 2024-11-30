@@ -1,0 +1,29 @@
+---
+org: organization name
+kind: project
+resource:
+  spec:
+    name: project name
+    description: this can be anything | optional
+
+---
+org: organization name
+kind: workspace
+resource:
+  spec:
+  - name: workspace name
+    description: this can be anything | optional
+    project: project name | default (default project)
+    workflow: options [vcs, cli-driven, api-driven] default (cli-driven)
+    execMode: default(use organization)
+
+---
+org: organization name
+kind: team
+resource:
+  spec:
+    name: team name
+    description: this can be anything | optional
+    project: project name | default (default project)
+    workflow: options [vcs, cli-driven, api-driven] default (cli-driven)
+    execMode: default(use organization)
