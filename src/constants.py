@@ -36,14 +36,23 @@ VCS_CONFIG = {
 }
 
 AGENT_POOL_DATA = {
-    "data": {
-        "type": "agent-pools",
-        "attributes": {
-            "name": "",
-            "organization-scoped": False,
-        }
-    }
-}
+                "data": {
+                    "type": "agent-pools",
+                    "attributes": {
+                        "name": "",
+                        "organization-scoped": False,
+                    }
+                }
+            }
+
+AGENT_TOKEN_DATA = {
+                    "data": {
+                        "type": "authentication-tokens",
+                        "attributes": {
+                        "description":""
+                        }
+                    }
+                    }
 
 WORKSPACE_PROJECT_REL =  {
                         "project": {
