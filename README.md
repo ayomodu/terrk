@@ -1,6 +1,7 @@
 `A simple and intuitive cli application to enable the deployment of resources to Terraform cloud.`
 
-suported operations
+`'''
+~Supported operations
 
 INIT
 inititialize/save context and create config file
@@ -39,4 +40,4 @@ terrk apply
       --file, -f
 
 DELETE
-```
+```~
