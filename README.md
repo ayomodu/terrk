@@ -1,6 +1,6 @@
 `A simple and intuitive cli application to enable the deployment of resources to Terraform cloud.`
 
-`'''
+```
 ~Supported operations
 
 INIT
@@ -39,5 +39,4 @@ terrk apply
       --type, -t
       --file, -f
 
-DELETE
-```~
+DELETE```
