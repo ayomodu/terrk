@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import datetime 
+from .constants import HEADERS, HTTP_SUCCESS_CODES
 
 CONFIG_DIR = Path().home() / ".terrk"
 CONFIG_FILE_PATH = CONFIG_DIR / ".terrk.conf"
@@ -83,72 +84,31 @@ def clean_context(context_obj):
     click.echo("no terrk context to clean up")
     return
 
+def extract_context():
+    config_file_path = Path(CONFIG_FILE_PATH)
+    if config_file_path.exists():
+        with open(config_file_path, 'r') as file:
+            content = json.load(file)
+            cur_ctx = content["current"]
+            token = content['contexts'][cur_ctx]["api_token"]
+            return cur_ctx, token
+    return ""
 
 
-@click.argument("org", type=str)
-@click.option("-t","--token", prompt="Enter your TFC api Token", hide_input=True, type=str)
-@click.command()
-@click.pass_context
-def init(ctx: click.Context, org, token):
+def get_context_detail(context_obj):
+    context = ''.join(context_obj.keys())
+    token = context_obj[context]
+    return context, token
 
-    '''Initialize the configuration needed to work with TFC'''
+def set_token(token):
+    context_token = "Bearer " + str(token)
+    HEADERS["Authorization"] = context_token
 
-    ctx.obj = { }
+    return HEADERS
 
-    #check if config file exists; if not; create TFC context 
-    if not check_config():
-        click.echo(f"terrk Config file not found...Creating new...\n")
-        try:
-            os.mkdir(CONFIG_DIR)
-        except:
-            pass
-        finally:
-            create_config(org=org, token=token)
-            update_context(org)
-            click.echo(f"terrk initialized!!! {org} context created at: {CONFIG_FILE_PATH}")
-        return
-    
-    #update the TFC config if file exists and contains context
-    update_config(org=org, token=token)
-    update_context(org)
-
-    click.echo(f"terrk initialized!!! {org} context updated")
-    return
-
-
-
-@click.command()
-@click.pass_context
-def which(ctx: click.Context):
-    '''Show the current context'''
-    check_context(ctx.obj)
-    ctx_val = ''.join(ctx.obj.keys())
-    click.echo(f"Current context: {ctx_val}")
-    return
-    
-
-@click.command()
-@click.pass_context   
-def clean(ctx: click.Context):
-    '''Remove all contexts - deletes the config file'''
-    clean_context(ctx.obj)
-    
-
-@click.command()
-@click.argument("name", type=str)
-def switch(name):
-    '''Switch to alternate context'''
-    if not check_config():
-        sys.stderr.write("No contexts saved, run 'terrk init' to add contexts\n")
+def check_response(response, resource: str):
+    if response.status_code not in HTTP_SUCCESS_CODES:
+        reason = (response.json()['errors'][0]['detail']).lower()
+        sys.stderr.write(f"Error!!! Status code: {response.status_code}, {resource} {reason}\n")
         exit(1)
         return
-    config = read_config()
-    if name not in config["contexts"]:
-        sys.stderr.write(f"Context not found, run 'terrk init {name}' to add context\n")
-        exit(1)
-        return
-    update_context(name)
-    click.echo(f"Context switched to {name}")
-    return
-
-

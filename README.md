@@ -1,4 +1,4 @@
-```This is a simple cli application to enable the deployment of resources to Terraform cloud.
+`A simple and intuitive cli application to enable the deployment of resources to Terraform cloud.`
 
 suported operations
 
