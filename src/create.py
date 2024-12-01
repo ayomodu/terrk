@@ -13,7 +13,6 @@ from .constants import (PROJ_DATA, WORKSPACE_DATA,
 from .utility import set_token, check_response
 
 
-
 def create_workspace(project_id: str,
                      name: str, 
                      agent_id: Optional[str], 
@@ -78,30 +77,31 @@ def create_agent(org: str, token:str, name: str):
     response = requests.post(url=url, data=data, headers=headers)
     return response
 
-def create_token(agent_id, token:str, description: Optional[str]):
+def create_token(agent_id, token:str, description: str):
     url = f"https://app.terraform.io/api/v2/agent-pools/{agent_id}/authentication-tokens"
     headers = set_token(token)
-    if description:
-        AGENT_TOKEN_DATA["data"]["description"] = description
+    
+    AGENT_TOKEN_DATA["data"]["attributes"]["description"] = description
     data = json.dumps(AGENT_TOKEN_DATA)
     response = requests.post(url=url, data=data, headers=headers)
     return response
 
+def create_agent_token(agent_id: str, token:str, description: str):
+    click.echo(f"Attempting to create agent token...\n")
+    token_create_response = create_token(agent_id=agent_id, token=token, description=description)
+    check_response(response=token_create_response, resource="Agent token")
+    tok_res_js = token_create_response.json()
+    token_val = tok_res_js["data"]["attributes"]["token"]
+    click.echo(f"Agent token created, please copy its value, it will not be displayed again!!!\nTOKEN: {token_val}")
 
-def create_agent_token(name: str, org:str, token:str, description: Optional[str], t):
+def create_agent_and_token(name: str, org:str, token:str, description: str, t):
     click.echo(f"Attempting to create agent {name}...\n")
     agent_create_response = create_agent(name=name, org=org, token=token)
 
     check_response(response=agent_create_response, resource="Agent pool")
     click.echo(f"Agent pool {name} successfully created in {org} organization")
     if t:
-       click.echo(f"Attempting to create token for agent {name}...\n")
+       #if create_token flag is set create token for associated agent and output value
        ag_res_js = agent_create_response.json()
        agent_id = ag_res_js["data"]["id"]
-       token_create_response = create_token(agent_id=agent_id, token=token, description=description)
-       
-       check_response(response=token_create_response, resource="Agent token")
-
-       tok_res_js = token_create_response.json()
-       token_val = tok_res_js["data"]["attributes"]["token"]
-       click.echo(f"{name} agent token created, please copy its value, it will not be displayed again!!!\nvalue: {token_val}")
+       create_agent_token(agent_id=agent_id, token=token, description=description)

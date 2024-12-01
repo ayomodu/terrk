@@ -1,6 +1,6 @@
 import click
 import os
-from .create import create_workspace, create_project
+from .create import create_workspace, create_project, create_agent_and_token, create_agent_token
 from .apply import apply
 import sys
 
@@ -50,7 +50,7 @@ def workspace(ctx: click.Context, name, description, terraform_version, exec_mod
 
 
 @click.argument("name")
-@click.option("-d", "--description", type=str)
+@click.option("-d", "--description", type=str, help="Project description")
 @click.command()
 @click.pass_context
 def project(ctx: click.Context, name, description):
@@ -65,16 +65,27 @@ def project(ctx: click.Context, name, description):
 
 @click.command()
 @click.argument("name", type=str)
+@click.option("-d", "--description", type=str, help="Agent token description, must be set if -t flag is set")
 @click.option("-t", "--gen-token", is_flag=True, show_default=True, default=False, help="if set will create and output agent token")
 @click.pass_context
-def agent(ctx: click.Context, name, gen_token):
+def agent(ctx: click.Context, name, description, gen_token):
     '''Create Terraform agent, agent-token and output token'''
     check_context(ctx.obj)
 
     ctx_details = get_context_detail(ctx.obj)
+    create_agent_and_token(name=name, org=ctx_details[0], token=ctx_details[1], description=description, t=gen_token)
 
 
-    pass
+@click.command()
+@click.option("-a", "--agent-id", required=True, type=str, help="Agent ID")
+@click.option("-d", "--description", required=True, type=str, help="Agent token description, it must be set")
+@click.pass_context
+def agenttoken(ctx: click.Context, agent_id, description):
+    '''Create Terraform agent-token and output token'''
+    ctx_details = get_context_detail(ctx.obj)
+    create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
+
+
 
 @click.group()
 def create():
@@ -153,6 +164,7 @@ def switch(name):
 create.add_command(workspace)
 create.add_command(project)
 create.add_command(agent)
+create.add_command(agenttoken)
 
 cli.add_command(create)
 cli.add_command(apply)
