@@ -89,7 +89,7 @@ def create_token(agent_id, token:str, description: str):
 def create_agent_token(agent_id: str, token:str, description: str):
     click.echo(f"Attempting to create agent token...\n")
     token_create_response = create_token(agent_id=agent_id, token=token, description=description)
-    check_response(response=token_create_response, resource="Agent token")
+    check_response(response=token_create_response, resource="Agent")
     tok_res_js = token_create_response.json()
     token_val = tok_res_js["data"]["attributes"]["token"]
     click.echo(f"Agent token created, please copy its value, it will not be displayed again!!!\nTOKEN: {token_val}")

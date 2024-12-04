@@ -1,5 +1,4 @@
 import sys  
-from typing import Optional
 import click
 import json
 import os
@@ -25,9 +24,8 @@ def read_config(filename: str = CONFIG_FILE_PATH):
 
 def check_context(context_obj):
     if not context_obj:
-        click.echo("No context available. Please run 'terrk init' first")
+        click.echo("No context available. Please run 'terrk init' or switch to a valid context first")
         exit(1)
-        return
 
 def create_config(org: str, token: str, file_path: str = CONFIG_FILE_PATH):
     '''Create a config file and add the new context
@@ -84,14 +82,33 @@ def clean_context(context_obj):
     click.echo("no terrk context to clean up")
     return
 
+
+def delete_context(name, context_obj):
+    filecontents = read_config()
+    file_contexts = filecontents["contexts"]
+    if name in file_contexts:
+        if click.confirm(f"Are you sure you want to delete {name} from config: ", abort=True):
+            del filecontents["contexts"][name]
+        if name == filecontents["current"]:
+            filecontents["current"] = ""
+            context_obj.clear()
+        
+        with open(CONFIG_FILE_PATH, 'w') as file:
+            json.dump(filecontents, file, indent=4)
+        click.echo(f"Context {name} deleted")
+        return
+    sys.stderr.write(f"No such context in config file...exiting...\n")
+    exit(1)
+
+        
 def extract_context():
     config_file_path = Path(CONFIG_FILE_PATH)
     if config_file_path.exists():
-        with open(config_file_path, 'r') as file:
-            content = json.load(file)
-            cur_ctx = content["current"]
-            token = content['contexts'][cur_ctx]["api_token"]
-            return cur_ctx, token
+        content = read_config(config_file_path)
+        cur_ctx = content["current"]
+    if cur_ctx:
+        token = content['contexts'][cur_ctx]["api_token"]
+        return cur_ctx, token
     return ""
 
 
@@ -108,7 +125,22 @@ def set_token(token):
 
 def check_response(response, resource: str):
     if response.status_code not in HTTP_SUCCESS_CODES:
-        reason = (response.json()['errors'][0]['detail']).lower()
+        res_js = response.json()
+        if "detail" in res_js['errors'][0]:
+            reason = (res_js['errors'][0]['detail']).lower()
+        else:
+            reason = (res_js['errors'][0]['title']).lower()
         sys.stderr.write(f"Error!!! Status code: {response.status_code}, {resource} {reason}\n")
         exit(1)
-        return
+
+def switch_context(name):
+    if not check_config():
+        sys.stderr.write("No contexts saved, run 'terrk init' to add contexts\n")
+        exit(1)
+    config = read_config()
+    if name not in config["contexts"]:
+        sys.stderr.write(f"Context not found, run 'terrk init {name}' to add context\n")
+        exit(1)
+    update_context(name)
+    click.echo(f"Current context switched to {name}")
+    return

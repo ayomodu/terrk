@@ -8,7 +8,8 @@ from .utility import (check_context, update_config,
                       update_context, check_config, 
                       clean_context, read_config, 
                       extract_context,  create_config,
-                      get_context_detail,
+                      get_context_detail, delete_context,
+                      switch_context,
                       CONFIG_DIR, CONFIG_FILE_PATH)
     
 @click.group()
@@ -82,6 +83,7 @@ def agent(ctx: click.Context, name, description, gen_token):
 @click.pass_context
 def agenttoken(ctx: click.Context, agent_id, description):
     '''Create Terraform agent-token and output token'''
+    check_context(ctx.obj)
     ctx_details = get_context_detail(ctx.obj)
     create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
 
@@ -125,7 +127,6 @@ def init(ctx: click.Context, org, token):
     return
 
 
-
 @click.command()
 @click.pass_context
 def which(ctx: click.Context):
@@ -147,18 +148,14 @@ def clean(ctx: click.Context):
 @click.argument("name", type=str)
 def switch(name):
     '''Switch to alternate context'''
-    if not check_config():
-        sys.stderr.write("No contexts saved, run 'terrk init' to add contexts\n")
-        exit(1)
-        return
-    config = read_config()
-    if name not in config["contexts"]:
-        sys.stderr.write(f"Context not found, run 'terrk init {name}' to add context\n")
-        exit(1)
-        return
-    update_context(name)
-    click.echo(f"Context switched to {name}")
-    return
+    switch_context(name=name)
+
+@click.argument("name", type=str)
+@click.command()
+@click.pass_context
+def rmcontext(ctx: click.Context, name):
+    '''Remove a context from config file'''
+    delete_context(name=name, context_obj=ctx.obj)
 
 
 create.add_command(workspace)
@@ -172,3 +169,4 @@ cli.add_command(init)
 cli.add_command(clean)
 cli.add_command(switch)
 cli.add_command(which)
+cli.add_command(rmcontext)
