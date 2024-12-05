@@ -1,107 +1,75 @@
-import requests
 import click
-import json
-import sys
+from .utils import create_core, utility
+# from create_core import create_workspace, create_project, create_agent_and_token, create_agent_token
 
-from typing import Literal, Optional
+@click.group()
+def create():
+    """Create resource using command line args"""
 
-from .constants import (PROJ_DATA, WORKSPACE_DATA,
-                        WORKSPACE_PROJECT_REL,
-                        HTTP_SUCCESS_CODES, AGENT_POOL_DATA,
-                        AGENT_TOKEN_DATA)
+#Resource management (Create commands)
 
-from .utility import set_token, check_response
-
-
-def create_workspace(project_id: str,
-                     name: str, 
-                     agent_id: Optional[str], 
-                     token: str, 
-                     description: Optional[str],
-                     org: str,
-                     exec_mode: Literal["local", "remote", "agent" ],
-                     terraform_version = Optional[str]
-                    ):
-    click.echo(f"Attempting to create workspace {name}...\n")
-
-    WORKSPACE_DATA["data"]["attributes"]["description"] = description
-    WORKSPACE_DATA["data"]["attributes"]["execution-mode"] = exec_mode
-    WORKSPACE_DATA["data"]["attributes"]["name"] = name
-
-    if exec_mode == "agent":
-        WORKSPACE_DATA["data"]["attributes"]["agent-pool-id"] = agent_id
-
-    if terraform_version:
-        WORKSPACE_DATA["data"]["attributes"]["terraform-version"] = terraform_version
-
-    if project_id:
-        WORKSPACE_PROJECT_REL["project"]["data"]["id"] = project_id
-        WORKSPACE_DATA["data"]["relationships"] = WORKSPACE_PROJECT_REL
-
-    js_data = json.dumps(WORKSPACE_DATA)
-
-    headers = set_token(token)
-
-    url = f"https://app.terraform.io/api/v2/organizations/{org}/workspaces"
-
-    response = requests.post(url=url, data=js_data, headers=headers)
-    check_response(response=response, resource="Workspace")
-    click.echo(f"Workspace {name} successfully created")
-
-
-def create_project(org: str, project_name: str, token: str, description: str = ""):
+@click.argument("name")
+@click.option("-a", "--agent-id", type=str, help="The id of the agent pool to use if exec-mode is set to agent")
+@click.option("-e", "--exec-mode", show_default=True, default="local", type=str, help="supported options; local, remote, agent.")
+@click.option("-d", "--description", type=str, help="The workspace description")
+@click.option("--terraform-version", type=str, help="The version of Terraform to use for this workspace [default: latest] ")
+@click.option("-p", "--project-id", type=str, help="ID of the project to deploy the workspace in. [default: default project]")
+@click.command()
+@click.pass_context
+def workspace(ctx: click.Context, name, description, terraform_version, exec_mode, agent_id, project_id):
+    '''Create Terraform cloud workspace'''
+    utility.check_context(ctx.obj)
+    ctx_details = utility.get_context_detail(ctx.obj)
     
-    click.echo(f"Attempting to create project {project_name}...\n")
+    create_core.create_workspace(org=ctx_details[0],
+                     name=name, 
+                     token=ctx_details[1], 
+                     exec_mode=exec_mode,
+                     agent_id=agent_id, 
+                     project_id=project_id, 
+                     description=description,  
+                     terraform_version=terraform_version)
 
-    url = f"https://app.terraform.io/api/v2/organizations/{org}/projects"
+
+@click.argument("name")
+@click.option("-d", "--description", type=str, help="Project description")
+@click.command()
+@click.pass_context
+def project(ctx: click.Context, name, description):
+    '''Create Terraform cloud project'''
     
-    PROJ_DATA["data"]["attributes"]["name"] = project_name
-    PROJ_DATA["data"]["attributes"]["description"] = description
-    
-    headers = set_token(token)
+    utility.check_context(ctx.obj)
 
-    js_data = json.dumps(PROJ_DATA)
-    response =  requests.post(url=url, data=js_data, headers=headers)
-    
-    check_response(response=response, resource="Project")
-    
-    click.echo(f"Project {project_name} successfully created in {org} organization")
+    ctx_details = utility.get_context_detail(ctx.obj)
+    create_core.create_project(org=ctx_details[0], token=ctx_details[1], description=description, project_name=name)
 
 
-def create_agent(org: str, token:str, name: str):
-    AGENT_POOL_DATA["data"]["attributes"]["name"] = name
-    url = f"https://app.terraform.io/api/v2/organizations/{org}/agent-pools"
-    headers = set_token(token)
-    data = json.dumps(AGENT_POOL_DATA)
 
-    response = requests.post(url=url, data=data, headers=headers)
-    return response
+@click.command()
+@click.argument("name", type=str)
+@click.option("-d", "--description", type=str, help="Agent token description, must be set if -t flag is set")
+@click.option("-t", "--gen-token", is_flag=True, show_default=True, default=False, help="if set will create and output agent token")
+@click.pass_context
+def agent(ctx: click.Context, name, description, gen_token):
+    '''Create Terraform agent, agent-token and output token'''
+    utility.check_context(ctx.obj)
 
-def create_token(agent_id, token:str, description: str):
-    url = f"https://app.terraform.io/api/v2/agent-pools/{agent_id}/authentication-tokens"
-    headers = set_token(token)
-    
-    AGENT_TOKEN_DATA["data"]["attributes"]["description"] = description
-    data = json.dumps(AGENT_TOKEN_DATA)
-    response = requests.post(url=url, data=data, headers=headers)
-    return response
+    ctx_details = utility.get_context_detail(ctx.obj)
+    create_core.create_agent_and_token(name=name, org=ctx_details[0], token=ctx_details[1], description=description, t=gen_token)
 
-def create_agent_token(agent_id: str, token:str, description: str):
-    click.echo(f"Attempting to create agent token...\n")
-    token_create_response = create_token(agent_id=agent_id, token=token, description=description)
-    check_response(response=token_create_response, resource="Agent")
-    tok_res_js = token_create_response.json()
-    token_val = tok_res_js["data"]["attributes"]["token"]
-    click.echo(f"Agent token created, please copy its value, it will not be displayed again!!!\nTOKEN: {token_val}")
 
-def create_agent_and_token(name: str, org:str, token:str, description: str, t):
-    click.echo(f"Attempting to create agent {name}...\n")
-    agent_create_response = create_agent(name=name, org=org, token=token)
+@click.command()
+@click.option("-a", "--agent-id", required=True, type=str, help="Agent ID")
+@click.option("-d", "--description", required=True, type=str, help="Agent token description, it must be set")
+@click.pass_context
+def agenttoken(ctx: click.Context, agent_id, description):
+    '''Create Terraform agent-token and output token'''
+    utility.check_context(ctx.obj)
+    ctx_details = utility.get_context_detail(ctx.obj)
+    create_core.create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
 
-    check_response(response=agent_create_response, resource="Agent pool")
-    click.echo(f"Agent pool {name} successfully created in {org} organization")
-    if t:
-       #if create_token flag is set create token for associated agent and output value
-       ag_res_js = agent_create_response.json()
-       agent_id = ag_res_js["data"]["id"]
-       create_agent_token(agent_id=agent_id, token=token, description=description)
+
+create.add_command(workspace)
+create.add_command(project)
+create.add_command(agent)
+create.add_command(agenttoken)
