@@ -1,7 +1,7 @@
 `A simple and intuitive cli application to enable the deployment of resources to Terraform cloud.`
 
 ```
-~Supported operations
+Supported operations
 
 INIT
 inititialize/save context and create config file
@@ -18,7 +18,7 @@ show the current context
 terrk which
 
 CREATE
-create a worksocae in current context
+create a workspace in current context
 terrk create workspace WORKSPACE
     arg: WORKSPACE NAME
     options:
