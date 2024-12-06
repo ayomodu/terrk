@@ -133,7 +133,7 @@ def create_team_and_token(name: str, org:str, token:str, t):
     check_response(response=team_resp, resource="Team")
     click.echo(f"Team {name} successfully created")
     if t:
-    #if create_token flag is set create token for associated agent and output value
+    #if create_token flag is set create token for associated team and output value
         days = click.prompt("Enter the number of days the token will be valid for", type=int)    
         team_res_js = team_resp.json()
         team_id = team_res_js["data"]["id"]
