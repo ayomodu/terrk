@@ -1,10 +1,12 @@
 import click
-from .utils import create_core, utility
-# from create_core import create_workspace, create_project, create_agent_and_token, create_agent_token
+from .utils.utility import check_context, get_context_detail
+from .utils.create_core import (create_workspace, create_project, 
+                                create_agent_and_token, create_agent_token,
+                                create_team_and_token, create_team_token)
 
 @click.group()
 def create():
-    """Create resource using command line args"""
+    """Create resources using command line args"""
 
 #Resource management (Create commands)
 
@@ -18,10 +20,10 @@ def create():
 @click.pass_context
 def workspace(ctx: click.Context, name, description, terraform_version, exec_mode, agent_id, project_id):
     '''Create Terraform cloud workspace'''
-    utility.check_context(ctx.obj)
-    ctx_details = utility.get_context_detail(ctx.obj)
+    check_context(ctx.obj)
+    ctx_details = get_context_detail(ctx.obj)
     
-    create_core.create_workspace(org=ctx_details[0],
+    create_workspace(org=ctx_details[0],
                      name=name, 
                      token=ctx_details[1], 
                      exec_mode=exec_mode,
@@ -38,10 +40,9 @@ def workspace(ctx: click.Context, name, description, terraform_version, exec_mod
 def project(ctx: click.Context, name, description):
     '''Create Terraform cloud project'''
     
-    utility.check_context(ctx.obj)
-
-    ctx_details = utility.get_context_detail(ctx.obj)
-    create_core.create_project(org=ctx_details[0], token=ctx_details[1], description=description, project_name=name)
+    check_context(ctx.obj)
+    ctx_details = get_context_detail(ctx.obj)
+    create_project(org=ctx_details[0], token=ctx_details[1], description=description, project_name=name)
 
 
 
@@ -52,10 +53,10 @@ def project(ctx: click.Context, name, description):
 @click.pass_context
 def agent(ctx: click.Context, name, description, gen_token):
     '''Create Terraform agent, agent-token and output token'''
-    utility.check_context(ctx.obj)
+    check_context(ctx.obj)
 
-    ctx_details = utility.get_context_detail(ctx.obj)
-    create_core.create_agent_and_token(name=name, org=ctx_details[0], token=ctx_details[1], description=description, t=gen_token)
+    ctx_details = get_context_detail(ctx.obj)
+    create_agent_and_token(name=name, org=ctx_details[0], token=ctx_details[1], description=description, t=gen_token)
 
 
 @click.command()
@@ -64,12 +65,33 @@ def agent(ctx: click.Context, name, description, gen_token):
 @click.pass_context
 def agenttoken(ctx: click.Context, agent_id, description):
     '''Create Terraform agent-token and output token'''
-    utility.check_context(ctx.obj)
-    ctx_details = utility.get_context_detail(ctx.obj)
-    create_core.create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
+    check_context(ctx.obj)
+    ctx_details = get_context_detail(ctx.obj)
+    create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
 
+@click.command()
+@click.argument("name", type=str)
+@click.option("-t", "--team-token", is_flag=True, help="if set will create and output team token")
+@click.pass_context
+def team(ctx: click.Context, name, team_token):
+    '''Create Terraform cloud team [beta(untested)]'''
+    check_context(ctx.obj)
+    ctx_details = get_context_detail(ctx.obj)
+    create_team_and_token(name=name, org=ctx_details[0], token=ctx_details[1], t=team_token)
+
+@click.command()
+@click.option("-t", "--team-id", required=True, help="Team id")
+@click.option("-d", "--days", type=int, default=7, show_default=True ,help="Number of days the token will be valid for")
+@click.pass_context
+def teamtoken(ctx: click.Context, days, team_id):
+    '''Create Terraform cloud team token [beta(untested)]'''
+    check_context(ctx.obj)
+    ctx_details = get_context_detail(ctx.obj)
+    create_team_token(team_id=team_id, token=ctx_details[1], days=days)
 
 create.add_command(workspace)
 create.add_command(project)
 create.add_command(agent)
 create.add_command(agenttoken)
+create.add_command(team)
+create.add_command(teamtoken)
