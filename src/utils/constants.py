@@ -63,4 +63,24 @@ WORKSPACE_PROJECT_REL =  {
                         }
                 }
 
+TEAM_DATA = {
+            "data": {
+                "type": "teams",
+                "attributes": {
+                "name": ""
+                    }
+                }
+            }
+
+TEAM_TOKEN_DATA =   {
+                    "data": {
+                        "type": "authentication-token",
+                        "attributes": {
+                            "expired-at": ""
+                            }
+                        }
+                    }
+
 HTTP_SUCCESS_CODES = {200,201,202,203,204}
+
+SUPPORTED_FILE_TYPE = [".xslx", ".yaml", ".yml"]

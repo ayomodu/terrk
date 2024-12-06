@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import datetime 
+from dateutil.relativedelta import relativedelta
 from .constants import HEADERS, HTTP_SUCCESS_CODES
 from prettytable import PrettyTable
 
@@ -108,9 +109,9 @@ def extract_context():
     if config_file_path.exists():
         content = read_config(config_file_path)
         cur_ctx = content["current"]
-    if cur_ctx:
-        token = content['contexts'][cur_ctx]["api_token"]
-        return cur_ctx, token
+        if cur_ctx:
+            token = content['contexts'][cur_ctx]["api_token"]
+            return cur_ctx, token
     return ""
 
 
@@ -160,3 +161,8 @@ def list_contexts():
         else:
             table.add_row([context, ""])
     click.echo(table)
+
+def set_token_expiry(days: int = 7):
+    timenow = datetime.datetime.now()
+    future_date_iso =  (timenow + relativedelta(days=days)).isoformat()
+    return future_date_iso

@@ -1,6 +1,11 @@
 import click
 import os
-from .utils import utility
+from .utils.utility import (CONFIG_DIR, CONFIG_FILE_PATH, 
+                            create_config, update_context, 
+                            check_config, clean_context, 
+                            delete_context, list_contexts,
+                            switch_context, update_config,
+                            check_context)
 
 @click.group()
 def config():
@@ -17,21 +22,21 @@ def init(ctx: click.Context, org, token):
     ctx.obj = { }
 
     #check if config file exists; if not; create TFC context 
-    if not utility.check_config():
+    if not check_config():
         click.echo(f"terrk Config file not found...Creating new...\n")
         try:
-            os.mkdir(utility.CONFIG_DIR)
+            os.mkdir(CONFIG_DIR)
         except:
             pass
         finally:
-            utility.create_config(org=org, token=token)
-            utility.update_context(org)
-            click.echo(f"terrk initialized!!! {org} context created at: {utility.CONFIG_FILE_PATH}")
+            create_config(org=org, token=token)
+            update_context(org)
+            click.echo(f"terrk initialized!!! {org} context created at: {CONFIG_FILE_PATH}")
         return
     
     #update the TFC config if file exists and contains context
-    utility.update_config(org=org, token=token)
-    utility.update_context(org)
+    update_config(org=org, token=token)
+    update_context(org)
 
     click.echo(f"terrk initialized!!! {org} context updated")
     return
@@ -41,7 +46,7 @@ def init(ctx: click.Context, org, token):
 @click.pass_context
 def which(ctx: click.Context):
     '''Show the current context'''
-    utility.check_context(ctx.obj)
+    check_context(ctx.obj)
     ctx_val = ''.join(ctx.obj.keys())
     click.echo(f"Current context: {ctx_val}")
     return
@@ -52,27 +57,27 @@ def which(ctx: click.Context):
 def clean(ctx: click.Context):
     '''Remove all contexts - deletes the config file'''
     if click.confirm(f"Are you sure you want to delete the terrk config? this action is irreversible", abort=True):
-        utility.clean_context(ctx.obj)
+        clean_context(ctx.obj)
     
 
 @click.command()
 @click.argument("name", type=str)
 def switch(name):
     '''Switch to alternate context'''
-    utility.switch_context(name=name)
+    switch_context(name=name)
 
 @click.argument("name", type=str)
 @click.command()
 @click.pass_context
 def rmcontext(ctx: click.Context, name):
     '''Remove a context from config file'''
-    utility.delete_context(name=name, context_obj=ctx.obj)
+    delete_context(name=name, context_obj=ctx.obj)
 
 
 @click.command()
 def lscontext():
     '''List all available contexts in config file'''
-    utility.list_contexts()
+    list_contexts()
 
 
 config.add_command(clean)
