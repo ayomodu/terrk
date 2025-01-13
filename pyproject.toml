@@ -10,7 +10,7 @@ packages = [
     ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.14"
 click = "8.1.7"
 requests = "2.32.3"
 PyYaml = "6.0.2"
@@ -22,9 +22,12 @@ pydantic = "2.10.4"
 jsonschema = "4.23.0"
 
 
+[tool.poetry.group.dev.dependencies]
+pyinstaller = "^6.11.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-terrk = "src.terrk:cli"
+terrk = "src.__main__:cli"

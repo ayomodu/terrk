@@ -1,6 +1,6 @@
 import click
-from .utils.utility import check_context, get_context_detail, check_options
-from .utils.delete_core import delete_workspace, delete_workspace_file, delete_project, delete_team, delete_agent
+from src.utils.utility import check_context, get_context_detail, check_options
+from src.utils.delete_core import delete_workspace, delete_workspace_file, delete_project, delete_team, delete_agent
 
 @click.group()
 def delete():
@@ -8,7 +8,7 @@ def delete():
     pass
 
 @click.option("-n", "--name", type=str, help="Name of the workspace to delete")
-@click.option("-f", "--file", type=str, help="Config file with list of workspaces to delete")
+@click.option("-f", "--file", type=click.Path(exists=True), help="Config file with list of workspaces to delete")
 @click.command()
 @click.pass_context
 def workspace(ctx: click.Context, name, file):

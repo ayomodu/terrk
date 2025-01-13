@@ -1,13 +1,13 @@
 import click
 import os
-from .create import create
-from .apply import apply
-from .list import list
-from .delete import delete
-from .config import config, init, which
+from src.create import create
+from src.apply import apply
+from src.list import list
+from src.delete import delete
+from src.config import config, init, which
 import sys
 
-from .utils.utility import (check_context, update_config, 
+from src.utils.utility import (check_context, update_config, 
                       update_context, check_config, 
                       clean_context, read_config, 
                       extract_context,  create_config,
@@ -40,3 +40,6 @@ cli.add_command(which)
 cli.add_command(config)
 cli.add_command(delete)
 cli.add_command(list)
+
+if __name__ == '__main__':
+    cli()

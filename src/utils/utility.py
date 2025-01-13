@@ -1,4 +1,5 @@
-import sys  
+import sys 
+from sys import exit 
 import click
 import json
 import os

@@ -1,6 +1,6 @@
 import click
 import os
-from .utils.utility import (CONFIG_DIR, CONFIG_FILE_PATH, 
+from src.utils.utility import (CONFIG_DIR, CONFIG_FILE_PATH, 
                             create_config, update_context, 
                             check_config, clean_context, 
                             delete_context, list_contexts,
