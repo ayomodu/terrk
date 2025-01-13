@@ -2,6 +2,8 @@ import click
 import os
 from .create import create
 from .apply import apply
+from .list import list
+from .delete import delete
 from .config import config, init, which
 import sys
 
@@ -36,3 +38,5 @@ cli.add_command(apply)
 cli.add_command(init)
 cli.add_command(which)
 cli.add_command(config)
+cli.add_command(delete)
+cli.add_command(list)

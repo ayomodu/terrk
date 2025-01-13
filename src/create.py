@@ -21,11 +21,11 @@ def create():
 def workspace(ctx: click.Context, name, description, terraform_version, exec_mode, agent_id, project_id):
     '''Create Terraform cloud workspace'''
     check_context(ctx.obj)
-    ctx_details = get_context_detail(ctx.obj)
+    org, token = get_context_detail(ctx.obj)
     
-    create_workspace(org=ctx_details[0],
+    create_workspace(org=org,
                      name=name, 
-                     token=ctx_details[1], 
+                     token=token, 
                      exec_mode=exec_mode,
                      agent_id=agent_id, 
                      project_id=project_id, 
@@ -41,8 +41,8 @@ def project(ctx: click.Context, name, description):
     '''Create Terraform cloud project'''
     
     check_context(ctx.obj)
-    ctx_details = get_context_detail(ctx.obj)
-    create_project(org=ctx_details[0], token=ctx_details[1], description=description, project_name=name)
+    org, token = get_context_detail(ctx.obj)
+    create_project(org=org, token=token, description=description, project_name=name)
 
 
 
@@ -55,8 +55,8 @@ def agent(ctx: click.Context, name, description, gen_token):
     '''Create Terraform agent, agent-token and output token'''
     check_context(ctx.obj)
 
-    ctx_details = get_context_detail(ctx.obj)
-    create_agent_and_token(name=name, org=ctx_details[0], token=ctx_details[1], description=description, t=gen_token)
+    org, token = get_context_detail(ctx.obj)
+    create_agent_and_token(name=name, org=org, token=token, description=description, t=gen_token)
 
 
 @click.command()
@@ -66,8 +66,8 @@ def agent(ctx: click.Context, name, description, gen_token):
 def agenttoken(ctx: click.Context, agent_id, description):
     '''Create Terraform agent-token and output token'''
     check_context(ctx.obj)
-    ctx_details = get_context_detail(ctx.obj)
-    create_agent_token(agent_id=agent_id, token=ctx_details[1], description=description)
+    org, token = get_context_detail(ctx.obj)
+    create_agent_token(agent_id=agent_id, token=token, description=description)
 
 @click.command()
 @click.argument("name", type=str)
@@ -76,8 +76,8 @@ def agenttoken(ctx: click.Context, agent_id, description):
 def team(ctx: click.Context, name, team_token):
     '''Create Terraform cloud team [beta(untested)]'''
     check_context(ctx.obj)
-    ctx_details = get_context_detail(ctx.obj)
-    create_team_and_token(name=name, org=ctx_details[0], token=ctx_details[1], t=team_token)
+    org, token = get_context_detail(ctx.obj)
+    create_team_and_token(name=name, org=org, token=token, t=team_token)
 
 @click.command()
 @click.option("-t", "--team-id", required=True, help="Team id")
@@ -86,8 +86,8 @@ def team(ctx: click.Context, name, team_token):
 def teamtoken(ctx: click.Context, days, team_id):
     '''Create Terraform cloud team token [beta(untested)]'''
     check_context(ctx.obj)
-    ctx_details = get_context_detail(ctx.obj)
-    create_team_token(team_id=team_id, token=ctx_details[1], days=days)
+    org, token = get_context_detail(ctx.obj)
+    create_team_token(team_id=team_id, token=token, days=days)
 
 create.add_command(workspace)
 create.add_command(project)

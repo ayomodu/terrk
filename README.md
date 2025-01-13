@@ -40,3 +40,11 @@ terrk apply
       --file, -f
 
 DELETE```
+
+apply highlevel steps
+check file is valid(in supported file types)
+depending on file type run:
+    parser function for respective file type
+    validate resource type to deploy:
+        validate fields in file
+            deploy resource
