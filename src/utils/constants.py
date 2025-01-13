@@ -1,3 +1,17 @@
+from typing import Optional
+from pydantic import BaseModel
+
+class WorkspaceObj(BaseModel):
+    WorkspaceName: str
+    ExecutionMode: str
+    projectid: Optional[str] = None
+    AgentID: Optional[str] = None
+    Description: Optional[str] = None
+
+class ExcelWorkspaceObj(WorkspaceObj):
+    No: int
+
+
 PROJ_DATA = {
                     "data": {
                     "type": "projects",
@@ -40,7 +54,7 @@ AGENT_POOL_DATA = {
                     "type": "agent-pools",
                     "attributes": {
                         "name": "",
-                        "organization-scoped": False,
+                        "organization-scoped": True,
                     }
                 }
             }
@@ -83,4 +97,76 @@ TEAM_TOKEN_DATA =   {
 
 HTTP_SUCCESS_CODES = {200,201,202,203,204}
 
-SUPPORTED_FILE_TYPE = [".xslx", ".yaml", ".yml"]
+SUPPORTED_FILE_TYPE = {".xlsx", ".yaml", ".yml"}
+
+WORKSPACE_DEPLOYMENT_SCHEMA_EXCEL = {
+                "type": "object",
+                "required": ['No', 'WorkspaceName', 'ExecutionMode'],
+                "additionalProperties": False,
+                "properties": {
+                    "No" : {"type": "number"},
+                    "WorkspaceName": {"type": "string"},
+                    "ExecutionMode": {"type": "string", "enum": ["local", "remote", "agent"]},
+                    "ProjectID": {"type": "string"},
+                    "AgentID" : {"type": "string"},
+                    "Description" : {"type": "string"},
+                    "Version": {"type": "string"}
+                    }
+
+}
+
+WORKSPACE_DELETE_SCHEMA_EXCEL = {
+                "type": "object",
+                "required": ['No', 'WorkspaceName'],
+                "additionalProperties": False,
+                "properties": {
+                    "No" : {"type": "number"},
+                    "WorkspaceName": {"type": "string"}
+                    }
+
+}
+
+WORKSPACE_DEPLOYMENT_SCHEMA_YAML = {
+                "type": "object",
+                "required": ['kind', 'resource'],
+                "additionalProperties": False,
+                "properties": {
+                    "kind" : {"type": "string", "enum": ["workspace"]},
+                    "resource" : {
+                        "type": "object",
+                        "required": ["name", "execMode", "projectid", "agentid", "description", "version"],
+                        "additionalProperties": False,
+                        "properties": {
+                            "name": {"type": "string"},
+                            "execMode": {"type": "string", "enum": ["local", "remote", "agent"]},
+                            "projectid": {"type": "string"},
+                            "agentid" : {"type": "string"},
+                            "description" : {"type": "string"},
+                            "version" : {"type": "string"}
+
+                        }
+                    }
+                    
+                    }
+
+}
+
+WORKSPACE_DELETE_SCHEMA_YAML = {
+                "type": "object",
+                "required": ['kind', 'resource'],
+                "additionalProperties": False,
+                "properties": {
+                    "kind" : {"type": "string", "enum": ["workspace"]},
+                    "resource" : {
+                        "type": "object",
+                        "required": ["name"],
+                        "additionalProperties": False,
+                        "properties": {
+                            "name": {"type": "string"}
+
+                        }
+                    }
+                    
+                    }
+
+}

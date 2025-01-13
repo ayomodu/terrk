@@ -13,3 +13,9 @@ htmlcov/
 Scripts
 Lib
 include
+*create.xlsx
+ex.yml
+example.yaml
+res.txt
+samp.xlsx
+*samp1.xlsx

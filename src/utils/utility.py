@@ -5,9 +5,11 @@ import os
 from pathlib import Path
 import datetime 
 from dateutil.relativedelta import relativedelta
-from .constants import HEADERS, HTTP_SUCCESS_CODES
+from .constants import HEADERS, HTTP_SUCCESS_CODES, SUPPORTED_FILE_TYPE
 from prettytable import PrettyTable
-
+import pandas as pd
+import yaml
+from jsonschema import validate, ValidationError
 
 CONFIG_DIR = Path().home() / ".terrk"
 CONFIG_FILE_PATH = CONFIG_DIR / ".terrk.conf"
@@ -166,3 +168,42 @@ def set_token_expiry(days: int = 7):
     timenow = datetime.datetime.now()
     future_date_iso =  (timenow + relativedelta(days=days)).isoformat()
     return future_date_iso
+
+def parse_excel(file):
+    excel_sheet = file
+    file_parser = pd.read_excel(excel_sheet).replace('\xa0', '', regex=True)
+    config = file_parser.fillna("").to_dict(orient='records')
+    return config
+
+def parse_yaml(file):
+    with open(file, 'r') as f:
+        config_file= yaml.safe_load_all(f)
+        return [config for config in config_file]
+    
+def check_file_ext(file):
+    if Path(file).suffix not in SUPPORTED_FILE_TYPE:
+        sys.stderr.write("Unsupported file type. Please use a file with a .xlsx/.yaml/.yml extention\n")
+        exit(1)
+    return Path(file).suffix
+
+def validate_config(schema, config):
+    try:
+        validate(schema=schema, instance=config)
+    except ValidationError as e:
+        sys.stderr.write(f"Invalid Config!! {e.message}\n")
+        exit(1)
+
+def get_workspace_config(file):
+    file_ext = check_file_ext(file=file)
+    if file_ext == ".xlsx":
+        return parse_excel(file), file_ext   
+    if file_ext == ".yaml" or ".yml":
+        return parse_yaml(file), file_ext
+    
+def check_options(name, file):
+    if not name and not file:
+        sys.stderr.write(f"Invalid command please add a workspace name with flag -n/--name or a config file with flag -f/--file\n")
+        exit(1)
+    if name and file:
+        sys.stderr.write(f"Invalid command please use only one of options -n/--name or -f/--file\n")
+        exit(1)
