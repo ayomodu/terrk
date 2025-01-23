@@ -110,11 +110,15 @@ def delete_context(name, context_obj):
 def extract_context():
     config_file_path = Path(CONFIG_FILE_PATH)
     if config_file_path.exists():
-        content = read_config(config_file_path)
-        cur_ctx = content["current"]
-        if cur_ctx:
-            token = content['contexts'][cur_ctx]["api_token"]
-            return cur_ctx, token
+        try:
+            content = read_config(config_file_path)
+            cur_ctx = content["current"]
+            if cur_ctx:
+                token = content['contexts'][cur_ctx]["api_token"]
+                return cur_ctx, token
+        except Exception:
+            sys.stderr.write(f"Unable to parse config file, invalid content.\nDelete config file at {CONFIG_FILE_PATH} and run terrk init")
+            exit(1)
     return ""
 
 

@@ -7,18 +7,22 @@ from src.delete import delete
 from src.config import config, init, which
 import sys
 
-from src.utils.utility import (check_context, update_config, 
-                      update_context, check_config, 
-                      clean_context, read_config, 
-                      extract_context,  create_config,
-                      get_context_detail, delete_context,
-                      switch_context,list_contexts,
-                      CONFIG_DIR, CONFIG_FILE_PATH)
+from src.utils.utility import ( 
+                      extract_context
+                      )
+
+
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    package_version = version("terrk")
+except PackageNotFoundError:
+    package_version = "0.1.0"
 
 #Command Groups
 
 @click.group()
-@click.version_option()
+@click.version_option(package_version, prog_name="terrk")
 @click.pass_context
 def cli(ctx: click.Context):
     ''' A tool to manage TFC resources'''

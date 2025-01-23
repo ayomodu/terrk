@@ -6,7 +6,7 @@ authors = ["ayomodu"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    { include = "src" }
+    { include = "terrk", from = "src" }
     ]
 
 [tool.poetry.dependencies]
@@ -30,4 +30,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-terrk = "src.__main__:cli"
+terrk = "terrk.__main__:cli"
