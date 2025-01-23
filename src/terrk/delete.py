@@ -1,6 +1,6 @@
 import click
-from src.terrk.utils.utility import check_context, get_context_detail, check_options
-from src.terrk.utils.delete_core import delete_workspace, delete_workspace_file, delete_project, delete_team, delete_agent
+from terrk.utils.utility import check_context, get_context_detail, check_options
+from terrk.utils.delete_core import delete_workspace, delete_workspace_file, delete_project, delete_team, delete_agent
 
 @click.group()
 def delete():
