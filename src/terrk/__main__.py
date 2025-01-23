@@ -1,13 +1,13 @@
 import click
 import os
-from src.create import create
-from src.apply import apply
-from src.list import list
-from src.delete import delete
-from src.config import config, init, which
+from src.terrk.create import create
+from src.terrk.apply import apply
+from src.terrk.list import list
+from src.terrk.delete import delete
+from src.terrk.config import config, init, which
 import sys
 
-from src.utils.utility import ( 
+from src.terrk.utils.utility import ( 
                       extract_context
                       )
 
@@ -17,7 +17,8 @@ from importlib.metadata import version, PackageNotFoundError
 try:
     package_version = version("terrk")
 except PackageNotFoundError:
-    package_version = "0.1.0"
+    sem_ver="0.1.2"
+    package_version = sem_ver 
 
 #Command Groups
 

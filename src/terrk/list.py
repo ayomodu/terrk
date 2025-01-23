@@ -1,6 +1,6 @@
 import click
-from src.utils.utility import check_context, get_context_detail
-from src.utils.list_core import list_projects, list_workspaces, list_agents, list_teams
+from src.terrk.utils.utility import check_context, get_context_detail
+from src.terrk.utils.list_core import list_projects, list_workspaces, list_agents, list_teams
 
 @click.group()
 def list():

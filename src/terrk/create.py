@@ -1,6 +1,6 @@
 import click
-from src.utils.utility import check_context, get_context_detail
-from src.utils.create_core import (create_workspace, create_project, 
+from src.terrk.utils.utility import check_context, get_context_detail
+from src.terrk.utils.create_core import (create_workspace, create_project, 
                                 create_agent_and_token, create_agent_token,
                                 create_team_and_token, create_team_token)
 

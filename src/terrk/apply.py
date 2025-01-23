@@ -1,6 +1,6 @@
 import click
-from src.utils.apply_core import validate_and_deploy_workspace
-from src.utils.utility import check_context, get_context_detail
+from src.terrk.utils.apply_core import validate_and_deploy_workspace
+from src.terrk.utils.utility import check_context, get_context_detail
 
 @click.group()
 def apply():
