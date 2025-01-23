@@ -73,4 +73,8 @@ depending on file type run:
         validate fields in file
             deploy resource
 
-poetry run pyinstaller --onefile --name terrk src/__main__.py
+
+pip install -r requirements.txt
+pip install .
+
+pyinstaller --name terrk --onefile --console src/terrk/__main__.py
