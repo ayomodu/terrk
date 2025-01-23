@@ -1,7 +1,6 @@
 import requests
 import click
 import json
-import sys
 from copy import deepcopy
 from typing import Literal, Optional
 

@@ -1,4 +1,28 @@
-`A simple and intuitive cli application to enable the deployment of resources to Terraform cloud.`
+
+# Terrk: A simple and intuitive command-line interface (CLI) application for managing resources in Terraform cloud.
+
+Description
+
+## Features
+
+- **Create Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))**: Easily create new namespaces in your Kubernetes cluster.
+- **List Namespaces**: Display a list of all existing namespaces.
+- **Delete Namespaces**: Remove namespaces that are no longer needed.
+
+## Prerequisites
+
+Before using AYONS, ensure that you have the following installed:
+
+- **Kubernetes Cluster**: A running Kubernetes cluster.
+- **kubectl**: Command-line tool for interacting with the Kubernetes API server.
+- **Bash**: AYONS is implemented as a Bash script; ensure that Bash is available on your system.
+
+## Installation
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/ayomodu/ayons.git
 
 ```
 Supported operations
@@ -48,3 +72,9 @@ depending on file type run:
     validate resource type to deploy:
         validate fields in file
             deploy resource
+
+
+pip install -r requirements.txt
+pip install .
+
+pyinstaller --name terrk --onefile --console src/terrk/__main__.py

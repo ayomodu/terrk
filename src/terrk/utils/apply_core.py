@@ -1,6 +1,4 @@
 from pathlib import Path
-import sys
-import click
 from .utility import validate_config, get_workspace_config
 from .constants import WORKSPACE_DEPLOYMENT_SCHEMA_EXCEL, WORKSPACE_DEPLOYMENT_SCHEMA_YAML
 from .create_core import create_workspace

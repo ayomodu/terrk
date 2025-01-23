@@ -1,6 +1,6 @@
 import click
 import os
-from .utils.utility import (CONFIG_DIR, CONFIG_FILE_PATH, 
+from src.terrk.utils.utility import (CONFIG_DIR, CONFIG_FILE_PATH, 
                             create_config, update_context, 
                             check_config, clean_context, 
                             delete_context, list_contexts,
@@ -17,7 +17,10 @@ def config():
 @click.pass_context
 def init(ctx: click.Context, org, token):
 
-    '''Initialize the configuration needed to work with TFC'''
+    '''Initialize the configuration needed to work with TFC, takes name of your TFC ORG as an argument.
+    
+       ORG is your terraform organization name. 
+    '''
 
     ctx.obj = { }
 

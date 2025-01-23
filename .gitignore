@@ -13,9 +13,13 @@ htmlcov/
 Scripts
 Lib
 include
+*.xlsx
+*.yml
+*.yaml
 *create.xlsx
 ex.yml
 example.yaml
 res.txt
 samp.xlsx
 *samp1.xlsx
+*terrk.spec
