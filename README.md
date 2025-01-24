@@ -85,6 +85,8 @@ terrk supports obtaining a list of a specific type of resource.
 
 E.g.    
 
+**List projects in TFC organization**   
+
 The command  
 ```
 terrk list projects
