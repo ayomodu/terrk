@@ -2,9 +2,9 @@
 # Terrk: A simple and intuitive command-line interface (CLI) application for managing resources in Terraform cloud (TFC).
 
 ## Description
-Terrk provides a simple and familair way of managing resources in TFC. 
-It is a cli application that acts as a client of the Terraform cloud API to bulk create, delete and list terraform cloud infrastructure resources offering an alternative method of managing these resources outside of the UI and via HCL terraform code.
-We also have context management built-in to enable you manage infra resources across multiple Terraform organizations by simply switching between contexts (Organizations).
+Terrk provides a simple and familair way of managing resources in TFC.  
+It is a cli application that acts as a client of the Terraform cloud API to bulk create, delete and list terraform cloud infrastructure resources offering an alternative method of managing these resources outside of the UI and via HCL terraform code.  
+We also have context management built-in to enable you manage infra resources across multiple Terraform organizations by simply switching between contexts (Organizations).  
 ## Features
 
 - **Create TFC Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))** : Create resources using cli arguments and yaml/excel configuration files
@@ -53,7 +53,11 @@ Next run
 ```
 terrk init ORG_NAME
 ```
-This creates a context for your organization and will prompt you to provide the API token generated above.
+This creates a context for your organization and will prompt you to provide the API token generated above.  
+**NB: The token is treated as a secret and will not be visible in the terminal when you paste it following the prompt.**     
+This command also allows you specify the option ```-t``` to provide the token. However, we advise against this as the API token is then visible in command history.  
+
+
 
 
 INIT
