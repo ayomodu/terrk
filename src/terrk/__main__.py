@@ -17,7 +17,7 @@ from importlib.metadata import version, PackageNotFoundError
 try:
     package_version = version("terrk")
 except PackageNotFoundError:
-    sem_ver="0.1.2"
+    sem_ver="0.1.0"
     package_version = sem_ver 
 
 #Command Groups

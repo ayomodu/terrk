@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="terrk",
-    version="0.1.3",
+    version="0.1.0",
     description="A simple CLI tool for managing Terraform cloud resources",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",

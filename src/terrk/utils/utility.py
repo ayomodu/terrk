@@ -30,7 +30,7 @@ def read_config(filename: str = CONFIG_FILE_PATH):
 
 def check_context(context_obj):
     if not context_obj:
-        sys.stderr.write("No context available. Please run 'terrk init' or switch to a valid context first")
+        sys.stderr.write("No context available. Please run 'terrk init' or switch to a valid context first\n")
         exit(1)
 
 def create_config(org: str, token: str, file_path: str = CONFIG_FILE_PATH):
@@ -117,7 +117,7 @@ def extract_context():
                 token = content['contexts'][cur_ctx]["api_token"]
                 return cur_ctx, token
         except Exception:
-            sys.stderr.write(f"Unable to parse config file, invalid content.\nDelete config file at {CONFIG_FILE_PATH} and run terrk init")
+            sys.stderr.write(f"Unable to parse config file, invalid content.\nDelete config file at {CONFIG_FILE_PATH} and run terrk init\n")
             exit(1)
     return ""
 
