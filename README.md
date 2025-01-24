@@ -34,7 +34,7 @@ Before using terrk, ensure that you have a:
   -  5. **Click New and add the path to the directory you have the terrk executable in, e.g., C:\Program Files\Desktop\terrk.**
   -  6. **Click OK to close all windows.**
   -  7. **Open a new CMD prompt window and run ```terrk --verison``` , you should see output similar to;** 
-    ```**terrk, version 0.1.3**```
+    ```terrk, version 0.1.0```
 
 ### Linux Install
 ####   **Steps:**
@@ -43,9 +43,16 @@ Before using terrk, ensure that you have a:
    - **2. Move terrk executable to /usr/local/bin/:**
         ```mv terrk /usr/local/bin/```
    - **3. run ```terrk --verison``` , you should see output similar to;** 
-    ```**terrk, version 0.1.3**```
+    ```terrk, version 0.1.0```
 
-Supported operations
+## Getting Started
+To begin using terrk you have to first generate a User api token in your TFC organization. 
+To understand how TFC user tokens work and how to generate them review the terraform documentation [here](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/users#tokens)  
+
+Next run
+```terrk init ORG_NAME```
+This creates a context for your organization and will prompt you to provide the API token generated above.
+
 
 INIT
 inititialize/save context and create config file
