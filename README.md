@@ -124,21 +124,20 @@ terrk enables you delete resources.
 
 **Delete Project**  
 
-The command  
+The command below deletes the project with projectid PROJECT_ID
 
 ```
 terrk delete project PROJECT_ID
 ```
-Deletes the project with projectid PROJECT_ID
 
 **Delete Workspace**  
 
-The command  
+The command below deletes the workspace with name WORKSPACENAME  
 
 ```
 terrk delete workspace WORKSPACENAME
 ```
-Deletes the workspace with name WORKSPACENAME  
+ 
 
 INIT
 inititialize/save context and create config file
