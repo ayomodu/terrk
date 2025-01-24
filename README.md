@@ -90,10 +90,10 @@ terrk list projects
 ```
 Produces the output below  
 
-| No |     Projects    |      Project_id      |
-| --- -----------------|----------------------|
-| 1  | Default Project | prj-kod1j4fmT5p4bsoJ |
-| 2  |    myproject    | prj-9U1TyEnsQXLEKrrk |
+| No   |     Projects    |      Project_id      |
+| ---  | --------------- | -------------------- |
+|  1   | Default Project | prj-kod1j4fmT5p4bsoJ |
+|  2   |    myproject    | prj-9U1TyEnsQXLEKrrk |
 
 Creates a new TFC project named "myproject" in your Terraform cloud organization.  
 
