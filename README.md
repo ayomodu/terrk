@@ -81,7 +81,8 @@ Creates a workspace named "myworkspace" in the project with PROJECT_ID specified
 
 ### List Resources
 
-terrk supports obtaining a list a specific type of resource.
+terrk supports obtaining a list of a specific type of resource.  
+
 E.g.    
 
 The command  
