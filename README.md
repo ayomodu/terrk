@@ -46,10 +46,10 @@ Before using terrk, ensure that you have a:
     ```terrk, version 0.1.0```
 
 ## Getting Started
-To begin using terrk you have to first generate a User api token in your TFC organization. 
-To understand how TFC user tokens work and how to generate them review the terraform documentation [here](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/users#tokens)  
+To begin using terrk you have to first generate a User api token in your TFC organization.  
+To understand how TFC user tokens work and how to generate them review the terraform documentation [here](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/users#tokens)    
 
-Next run
+Next run  
 ```terrk init ORG_NAME```
 This creates a context for your organization and will prompt you to provide the API token generated above.
 
