@@ -17,9 +17,7 @@ def config():
 @click.pass_context
 def init(ctx: click.Context, org, token):
 
-    '''Initialize the configuration needed to work with TFC, takes name of your TFC ORG as an argument.
-    
-       ORG is your terraform organization name. 
+    '''Initialize the configuration needed to work with TFC 
     '''
 
     ctx.obj = { }

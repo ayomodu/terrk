@@ -1,30 +1,47 @@
 
-# Terrk: A simple and intuitive command-line interface (CLI) application for managing resources in Terraform cloud.
+# Terrk: A simple and intuitive command-line interface (CLI) application for managing resources in Terraform cloud (TFC).
 
-Description
-
+## Description
+Terrk provides a simple and familair way of managing resources in TFC. 
+It is a cli application that acts as a client of the Terraform cloud API to bulk create, delete and list terraform cloud infrastructure resources offering an alternative method of managing these resources outside of the UI and via HCL terraform code.
+We also have context management built-in to enable you manage infra resources across multiple Terraform organizations by simply switching between contexts (Organizations).
 ## Features
 
-- **Create Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))**: Easily create new namespaces in your Kubernetes cluster.
-- **List Namespaces**: Display a list of all existing namespaces.
-- **Delete Namespaces**: Remove namespaces that are no longer needed.
+- **Create TFC Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))** : Create resources using cli arguments and yaml/excel configuration files
+- **List Resources**: Display a list of all existing namespaces.
+- **Delete Resources**: Remove namespaces that are no longer needed.
+- **Add TFC organizations**
 
 ## Prerequisites
 
-Before using AYONS, ensure that you have the following installed:
+Before using TERRK, ensure that you have a:
 
-- **Kubernetes Cluster**: A running Kubernetes cluster.
-- **kubectl**: Command-line tool for interacting with the Kubernetes API server.
-- **Bash**: AYONS is implemented as a Bash script; ensure that Bash is available on your system.
+- **Terraform Cloud Org**: A Terraform cloud Organization
 
 ## Installation
+**NB: Terrk has been tested and is only supported on x64 (Windows) and x86_64(Linux) bit systems** 
+1. **Download the Binary File:**:
 
-1. **Clone the Repository**:
+   Download the binary for you OS type here
 
-   ```bash
-   git clone https://github.com/ayomodu/ayons.git
+### Windows Install
+   Adding the program's directory to the system PATH allows you to run the executable from any command prompt without specifying its full path.
+    **Steps:**
+    1. Press Win + X and select System.
+    2. Click on Advanced system settings.
+    3. In the System Properties window, go to the Advanced tab and click on Environment Variables.
+    4. In the Environment Variables window, find the Path variable under System variables, select it, and click Edit.
+    5. Click New and add the path to the directory you have the terrk executable in, e.g., C:\Program Files\Desktop\terrk.
+    6. Click OK to close all windows.
+    7. Open a new CMD window and run ```terrk --verison``` , you should see output similar to; 
+    **terrk, version 0.1.3**
 
-```
+### Linux Install
+    **Steps:**
+    1. Ensure bin file is executable using command 
+        ```chmod +x terrk```
+    2. Move terrk executable to /usr/local/bin/
+        ```mv terrk /usr/local/bin/```
 Supported operations
 
 INIT
