@@ -54,7 +54,9 @@ Next run
 terrk init ORG_NAME
 ```
 This creates a context for your organization and will prompt you to provide the API token generated above.  
+
 **NB: The token is treated as a secret and will not be visible in the terminal when you paste it following the prompt.**     
+
 This command also allows you specify the option ```-t``` to provide the token. However, we advise against this as the API token is then visible in command history.  
 
 
