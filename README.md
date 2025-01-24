@@ -38,11 +38,11 @@ Before using terrk, ensure that you have a:
 
 ### Linux Install
 ####   **Steps:**
-    **1. Ensure bin file is executable using command** 
+   - **1. Ensure bin file is executable using command** 
         ```chmod +x terrk```
-    **2. Move terrk executable to /usr/local/bin/**
+   - **2. Move terrk executable to /usr/local/bin/**
         ```mv terrk /usr/local/bin/```
-    **3. run ```terrk --verison``` , you should see output similar to;** 
+   - **3. run ```terrk --verison``` , you should see output similar to;** 
     **terrk, version 0.1.3**
 
 Supported operations
