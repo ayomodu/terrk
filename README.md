@@ -8,13 +8,13 @@ We also have context management built-in to enable you manage infra resources ac
 ## Features
 
 - **Create TFC Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))** : Create resources using cli arguments and yaml/excel configuration files
-- **List Resources**: Display a list of all existing namespaces.
+- **List Resources**: Display a list of existing resources.
 - **Delete Resources**: Remove namespaces that are no longer needed.
 - **Add TFC organizations**
 
 ## Prerequisites
 
-Before using TERRK, ensure that you have a:
+Before using terrk, ensure that you have a:
 
 - **Terraform Cloud Org**: A Terraform cloud Organization
 
@@ -27,13 +27,13 @@ Before using TERRK, ensure that you have a:
 ### Windows Install
    Adding the program's directory to the system PATH allows you to run the executable from any command prompt without specifying its full path.
     **Steps:**
-    1. Press Win + X and select System.
-    2. Click on Advanced system settings.
-    3. In the System Properties window, go to the Advanced tab and click on Environment Variables.
-    4. In the Environment Variables window, find the Path variable under System variables, select it, and click Edit.
-    5. Click New and add the path to the directory you have the terrk executable in, e.g., C:\Program Files\Desktop\terrk.
-    6. Click OK to close all windows.
-    7. Open a new CMD window and run ```terrk --verison``` , you should see output similar to; 
+    1. **Press Win + X and select System.**
+    2. **Click on Advanced system settings.**
+    3. **In the System Properties window, go to the Advanced tab and click on Environment Variables.**
+    4. **In the Environment Variables window, find the Path variable under System variables, select it, and click Edit.**
+    5. **Click New and add the path to the directory you have the terrk executable in, e.g., C:\Program Files\Desktop\terrk.**
+    6. **Click OK to close all windows.**
+    7. **Open a new CMD window and run ```terrk --verison``` , you should see output similar to;** 
     **terrk, version 0.1.3**
 
 ### Linux Install
