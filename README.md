@@ -26,14 +26,14 @@ Before using terrk, ensure that you have a:
 
 ### Windows Install
    Adding the program's directory to the system PATH allows you to run the executable from any command prompt without specifying its full path.
-  -  **Steps:**
+#### **Steps:**
   -  1. **Press Win + X and select System.**
   -  2. **Click on Advanced system settings.**
   -  3. **In the System Properties window, go to the Advanced tab and click on Environment Variables.**
   -  4. **In the Environment Variables window, find the Path variable under System variables, select it, and click Edit.**
   -  5. **Click New and add the path to the directory you have the terrk executable in, e.g., C:\Program Files\Desktop\terrk.**
   -  6. **Click OK to close all windows.**
-  -  7. **Open a new CMD window and run ```terrk --verison``` , you should see output similar to;** 
+  -  7. **Open a new CMD prompt window and run ```terrk --verison``` , you should see output similar to;** 
     **terrk, version 0.1.3**
 
 ### Linux Install
