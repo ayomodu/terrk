@@ -95,12 +95,22 @@ Produces the output below
 |  1   | Default Project | prj-kod1j4fmT5p4bsoJ |
 |  2   |    myproject    | prj-9U1TyEnsQXLEKrrk |
 
-Creates a new TFC project named "myproject" in your Terraform cloud organization.  
 
+**List workspaces in a project**    
+
+The command
 ```
-terrk create workspace myworkspace -p PROJECT_ID
+terrk list workspaces -p PROJECT_ID
 ```
-Creates a workspace named "myworkspace" in the project with PROJECT_ID specified in the command. 
+Produces the output below  
+
+| No  |        Workspaces       |          Id         | ExecMode |
+| --- | ----------------------- | ------------------- | -------- |
+| 1   |         newlinux        | ws-PCv9RdRm8ekwMLMc |  local   |
+| 2   |           init          | ws-uBbwUzJpvdjcgkRm |  local   |
+
+
+
 
 terrk also supports bulk creating and deleting specific resources (workspaces).  
 To see the full list of supported operations review the [documentation here]()
