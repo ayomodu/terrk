@@ -118,7 +118,27 @@ Produces the output below
 terrk also supports bulk creating and deleting specific resources (workspaces).  
 To see the full list of supported operations review the [documentation here]()
 
+### Delete Resources
 
+terrk enables you delete resources.  
+
+**Delete Project**  
+
+The command  
+
+```
+terrk delete project PROJECT_ID
+```
+Deletes the project with projectid PROJECT_ID
+
+**Delete Workspace**  
+
+The command  
+
+```
+terrk delete workspace WORKSPACENAME
+```
+Deletes the workspace with name WORKSPACENAME  
 
 INIT
 inititialize/save context and create config file
