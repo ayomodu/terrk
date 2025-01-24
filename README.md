@@ -70,7 +70,7 @@ To begin creating TFC resources you can use the top level ```terrk create``` com
 terrk create project myproject
 ```
 
-Creates a new TFC project named "myproject" in yout Terraform cloud organization.  
+Creates a new TFC project named "myproject" in your Terraform cloud organization.  
 
 ```
 terrk create workspace myworkspace -p PROJECT_ID
@@ -78,6 +78,29 @@ terrk create workspace myworkspace -p PROJECT_ID
 Creates a workspace named "myworkspace" in the project with PROJECT_ID specified in the command.  
 
 **NB: The -p flag here is optional. If you do not specify a PROJECT_ID, the workspace is automatically created in the default project of your TFC organization.**  
+
+### List Resources
+
+terrk supports obtaining a list a specific type of resource.
+E.g.    
+
+The command  
+```
+terrk list projects
+```
+Produces the output below  
+
+| No |     Projects    |      Project_id      |
+| --- -----------------|----------------------|
+| 1  | Default Project | prj-kod1j4fmT5p4bsoJ |
+| 2  |    myproject    | prj-9U1TyEnsQXLEKrrk |
+
+Creates a new TFC project named "myproject" in your Terraform cloud organization.  
+
+```
+terrk create workspace myworkspace -p PROJECT_ID
+```
+Creates a workspace named "myworkspace" in the project with PROJECT_ID specified in the command. 
 
 terrk also supports bulk creating and deleting specific resources (workspaces).  
 To see the full list of supported operations review the [documentation here]()
