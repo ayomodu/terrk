@@ -62,7 +62,25 @@ This creates a context for your organization and will prompt you to provide the 
 This command also allows you specify the ```-t``` option to provide the token. We advise against doing this as it makes the API token visible in command history.  
 
 
+### Create Resources
 
+To begin creating TFC resources you can use the top level ```terrk create``` command with the correponding sub-command.  
+
+```
+terrk create project myproject
+```
+
+Creates a new TFC project named "myproject" in yout Terraform cloud organization.  
+
+```
+terrk create workspace myworkspace -p PROJECT_ID
+```
+Creates a workspace named "myworkspace" in the project with PROJECT_ID specified in the command.  
+
+**NB: The -p flag here is optional. If you do not specify a PROJECT_ID, the workspace is automatically created in the default project of your TFC organization.**  
+
+terrk also supports bulk creating and deleting specific resources (workspaces).  
+To see the full list of supported operations review the [documentation here]()
 
 
 
