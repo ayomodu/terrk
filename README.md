@@ -46,6 +46,8 @@ Before using terrk, ensure that you have a:
     ```terrk, version 0.1.0```
 
 ## Getting Started
+
+### Initialize Context
 To begin using terrk you have to first generate a User api token in your TFC organization.  
 To understand how TFC user tokens work and how to generate them review the terraform documentation [here](https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/users#tokens)    
 
@@ -57,7 +59,9 @@ This creates a context for your organization and will prompt you to provide the 
 
 **NB: The token is treated as a secret and will not be visible in the terminal when you paste it following the prompt.**     
 
-This command also allows you specify the option ```-t``` to provide the token. However, we advise against this as the API token is then visible in command history.  
+This command also allows you specify the ```-t``` option to provide the token. We advise against doing this as it makes the API token visible in command history.  
+
+
 
 
 
