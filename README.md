@@ -25,7 +25,7 @@ Before using terrk, ensure that you have a:
    Download the binary for you OS type here
 
 ### Windows Install
-   Adding the program's directory to the system PATH allows you to run the executable from any command prompt without specifying its full path.
+   Adding the program's directory to the system PATH allows you to run the executable from any command prompt window without specifying its full path.
 #### **Steps:**
   -  1. **Press Win + X and select System.**
   -  2. **Click on Advanced system settings.**
