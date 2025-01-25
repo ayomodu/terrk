@@ -28,7 +28,8 @@ terrk create agent NAME [OPTIONS]
 
 ### Optional Parameters
 ```-t, --gen-token```      
-    if set will create and output agent token  
+    if set will create and output agent token
+      
 ```-d, --description```  
     Agent token description, must be set if -t flag is set  
 
