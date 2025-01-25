@@ -20,7 +20,7 @@ Before using terrk, ensure that you have a:
 
 ## Installation
 **NB: Terrk has been tested and is only supported on x64 (Windows) and x86_64(Linux) bit systems** 
-1. **Download the Binary File:**:
+1. **Download the Binary File:** 
 
    Download the binary for you OS type here
 
