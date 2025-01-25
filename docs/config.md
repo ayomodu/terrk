@@ -1,5 +1,7 @@
 # Terrk Context Management Commands 
 
+**The commands below are associated with and used to manage terrk contexts which represent the details required to administer a Terraform cloud organization**  
+
 ## terrk init
 
 **Initialize the configuration needed to work with TFC, takes the name of your TFC ORG as an argument.**  
