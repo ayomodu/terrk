@@ -2,10 +2,10 @@
 
 **List Terraform cloud resources**  
 
-[terrk list agents](#terrk-delete-agent)    
-[terrk list projects](#terrk-delete-project)   
-[terrk list teams](#terrk-delete-team)       
-[terrk list workspaces](#terrk-delete-workspace)
+[terrk list agents](#terrk-list-agents)    
+[terrk list projects](#terrk-list-projects)   
+[terrk list teams](#terrk-list-teams)       
+[terrk list workspaces](#terrk-list-workspaces)
 
 
 ## terrk list agents 
