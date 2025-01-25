@@ -164,8 +164,3 @@ Commands:
 
 To see the full list of commands, sub-commands and configuration options review the [documentation here](docs/root.md)
 
-
-pip install -r requirements.txt
-pip install .
-
-pyinstaller --name terrk --onefile --console src/terrk/__main__.py
