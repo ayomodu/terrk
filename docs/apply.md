@@ -12,4 +12,4 @@ terrk apply workspace  --file
 ### Required Parameters
 
 ```-f, --file```    
-   Specify the path to the (yaml|xlsx) config file  [required]
+   Specify the path to the (yaml|xlsx) config file
