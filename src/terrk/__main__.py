@@ -1,11 +1,9 @@
 import click
-import os
 from terrk.create import create
 from terrk.apply import apply
 from terrk.list import list
 from terrk.delete import delete
 from terrk.config import config, init, which
-import sys
 
 from terrk.utils.utility import ( 
                       extract_context
