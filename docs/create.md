@@ -29,12 +29,27 @@ terrk create agent NAME [OPTIONS]
 ### Optional Parameters
 ```-t, --gen-token```      
     if set will create and output agent token
-      
+
 ```-d, --description```  
     Agent token description, must be set if -t flag is set  
 
 
 ## terrk create agenttoken
+
+**Create Terraform agent-token and output token**
+
+```
+terrk create agenttoken --agent-id
+                         --description
+```
+
+### Required Parameters
+
+```-a, --agent-id```  
+   The ID of the agentpool.  
+
+```-d, --description```  
+   Agent token description. This must be set.
 
 ## terrk create project
 
