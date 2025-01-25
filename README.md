@@ -114,11 +114,6 @@ Produces the output below
 | 3   |           test          | ws-vPbwGzJherjklsFx |  agent   |
 
 
-
-
-terrk also supports bulk creating and deleting specific resources (workspaces).  
-To see the full list of supported operations review the [documentation here]()
-
 ### Delete Resources
 
 terrk enables you delete resources.  
@@ -133,58 +128,40 @@ terrk delete project PROJECT_ID
 
 **Delete Workspace**  
 
-The command below deletes the workspace with name WORKSPACENAME  
+The command below deletes the workspace with name WORKSPACE_NAME  
 
 ```
-terrk delete workspace WORKSPACENAME
+terrk delete workspace WORKSPACE_NAME
 ```
  
+### NB: terrk also supports bulk creating and deleting specific resources (workspaces) using excel and yaml configuration files.    
 
-INIT
-inititialize/save context and create config file
-    terrk init ORG_NAME
-    options:
-        token: -t, --token api_key needed to access TFC 
 
-SWITCH
-switch to alternate context
-    terrk switch CONTEXT(NAME OF ORG)
+**To see the list of supported operations run ```terrk``` then you can drill down to the commands, subcommands and their associated options using the ```--help``` option.**      
 
-WHICH
-show the current context
-terrk which
+```
+C:\Users\ayomo>terrk
+Usage: terrk [OPTIONS] COMMAND [ARGS]...
 
-CREATE
-create a workspace in current context
-terrk create workspace WORKSPACE
-    arg: WORKSPACE NAME
-    options:
-      description: --description, -d
-      project: --project, -p (default=default project)
+  A tool to manage TFC resources
 
-terrk create project PROJECT
-    arg: PROJECT NAME
-    options:
-      description: --description, -d
+Options:
+  --version  Show the version and exit.
+  --help     Show this message and exit.
 
-terrk create team TEAM
-    arg: TEAM NAME
+Commands:
+  apply   Create resource using a yaml or xlsx file
+  config  Manage context configuration
+  create  Create resources using command line args
+  delete  Delete TFC resources
+  init    Initialize the configuration needed to work with TFC, takes...
+  list    List Terraform cloud resources
+  which   Show the current context
+```
 
-terrk apply 
-    arg: FILE NAME
-    options:
-      --type, -t
-      --file, -f
+## Further reading
 
-DELETE```
-
-apply highlevel steps
-check file is valid(in supported file types)
-depending on file type run:
-    parser function for respective file type
-    validate resource type to deploy:
-        validate fields in file
-            deploy resource
+To see the full list of commands, sub-commands and configuration options review the [documentation here]()
 
 
 pip install -r requirements.txt
