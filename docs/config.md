@@ -14,19 +14,19 @@ terrk config clean
 
 ## terrk config lscontext 
 
-**List all available contexts in config file**  
+**List all available contexts in the config file**  
 
 ```
  terrk config lscontext
 ```
 ## terrk config rmcontext 
 
-**Remove a context[TFC Organization] from config file**  
+**Remove a context from config file**  
 
 ```
  terrk config rmcontext NAME
 ```
-### Required Argument
+### Required Arguments
 
 ```NAME```    
    The name of the TFC organization context to remove from config file
@@ -38,7 +38,7 @@ terrk config clean
 ```
  terrk config switch NAME
 ```
-### Required Argument
+### Required Arguments
 
 ```NAME```    
    The name of the TFC organization context to switch to
