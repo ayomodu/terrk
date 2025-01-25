@@ -22,9 +22,9 @@ terrk init ORG --token
 
 **Show the current context**  
 
-'''
+```
 terrk which
-'''
+```
 
 # terrk config
 
