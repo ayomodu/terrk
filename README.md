@@ -67,6 +67,7 @@ The command above also allows you specify the ```-t``` option to provide the tok
 
 To begin creating TFC resources you can use the top level ```terrk create``` command with the correponding sub-command.  
 
+E.g  
 ```
 terrk create project myproject
 ```
