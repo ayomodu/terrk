@@ -155,14 +155,14 @@ Commands:
   config  Manage context configuration
   create  Create resources using command line args
   delete  Delete TFC resources
-  init    Initialize the configuration needed to work with TFC, takes...
+  init    Initialize the configuration needed to work with TFC
   list    List Terraform cloud resources
   which   Show the current context
 ```
 
 ## Further reading
 
-To see the full list of commands, sub-commands and configuration options review the [documentation here]()
+To see the full list of commands, sub-commands and configuration options review the [documentation here](docs/root.md)
 
 
 pip install -r requirements.txt
