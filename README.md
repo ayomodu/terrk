@@ -57,7 +57,8 @@ terrk init ORG_NAME
 ```
 This creates a context for your organization and will prompt you to provide the API token generated above.  
 
-**NB: The token is treated as a secret and will not be visible in the terminal when you paste it following the prompt.**     
+**NB: The token is treated as a secret and will not be visible in the terminal when you paste it following the prompt.** 
+**terrk relies on the API token to authenticate you to the TFC API and carry out admin activities scoped to the permissions delegated to your user account**      
 
 The command above also allows you specify the ```-t``` option to provide the token. We advise against doing this as it makes the API token visible in command history.  
 
