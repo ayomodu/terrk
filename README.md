@@ -134,7 +134,7 @@ The command below deletes the workspace with name WORKSPACE_NAME
 terrk delete workspace WORKSPACE_NAME
 ```
  
-### NB: terrk also supports bulk creating and deleting specific resources (workspaces) using excel and yaml configuration files.    
+**NB: terrk also supports bulk creating and deleting specific resources (workspaces) using excel and yaml configuration files.**      
 
 
 **To see the list of supported operations run ```terrk``` then you can drill down to the commands, subcommands and their associated options using the ```--help``` option.**      
