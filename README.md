@@ -3,7 +3,7 @@
 
 ## Description
 Terrk provides a simple and familiar way of managing resources in TFC.  
-It is a cli application that acts as a client of the Terraform cloud API to bulk create, delete and list terraform cloud infrastructure resources offering an alternative method of managing these resources outside of the UI and via HCL terraform code.  
+It is a cli application that acts as a client of the Terraform cloud API to bulk create, delete and list Terraform cloud resources offering an alternative method of managing these resources outside of the UI and via HCL terraform code.  
 terrk is context aware and enables you manage TFC resources across multiple Terraform cloud organizations by simply switching between contexts (Organizations).  
 ## Features
 
