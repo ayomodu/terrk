@@ -29,7 +29,7 @@ terrk config clean
 ### Required Arguments
 
 ```NAME```    
-   The name of the TFC organization context to remove from config file
+   The name of the TFC organization/context to remove from config file
 
 ## terrk config switch 
 
@@ -41,4 +41,4 @@ terrk config clean
 ### Required Arguments
 
 ```NAME```    
-   The name of the TFC organization context to switch to
+   The name of the TFC organization/context to switch to
