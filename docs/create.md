@@ -17,8 +17,20 @@
 
 ```
 terrk create agent NAME [OPTIONS]
+                        --description
+                        --gen-token
 
 ```
+### Required Arguments
+
+```NAME```    
+   The name to assign to the agentpool
+
+### Optional Parameters
+-t, --gen-token         
+    if set will create and output agent token
+-d, --description 
+    Agent token description, must be set if -t flag is set
 
 
 ## terrk create agenttoken
