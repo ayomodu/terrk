@@ -1,6 +1,6 @@
 # Terrk Context Management Commands 
 
-**The commands below are associated with and used to manage terrk contexts which represent the details required to administer a Terraform cloud organization**  
+**The commands below are associated with and used to manage terrk contexts which represent the details required to administer a specific Terraform cloud organization**  
 
 ## terrk init
 
