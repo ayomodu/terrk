@@ -140,7 +140,8 @@ terrk delete workspace WORKSPACE_NAME
 **To see the list of supported operations run ```terrk``` then you can drill down to the commands, subcommands and their associated options using the ```--help``` option.**      
 
 ```
-C:\Users\ayomo>terrk
+C:\Users\ayomodu>terrk
+
 Usage: terrk [OPTIONS] COMMAND [ARGS]...
 
   A tool to manage TFC resources
