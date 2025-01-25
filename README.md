@@ -9,8 +9,8 @@ terrk is context aware and enables you manage TFC resources across multiple Terr
 
 - **Create TFC Resources (Workspaces, Projects, Agent Pools, Agent tokens, Teams(beta), Team tokens(beta))** : Create resources using cli arguments and yaml/excel configuration files
 - **List Resources**: Display a list of existing resources.
-- **Delete Resources**: Remove namespaces that are no longer needed.
-- **Add TFC organizations**
+- **Delete Resources**: Remove resources that are no longer needed.
+- **Add TFC organizations for management**
 
 ## Prerequisites
 
