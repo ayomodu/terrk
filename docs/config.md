@@ -1,3 +1,31 @@
+# Terrk Context Management Commands 
+
+## terrk init
+
+**Initialize the configuration needed to work with TFC, takes the name of your TFC ORG as an argument.**  
+
+```
+terrk init ORG --token
+```
+
+### Required Arguments
+
+```ORG```  
+   Your Terraform Cloud organization name.
+
+### Optional Parameters
+
+```-t, --token```  
+   Authentication token for Terraform Cloud.
+
+## terrk which
+
+**Show the current context**  
+
+'''
+terrk which
+'''
+
 # terrk config
 
 **Manage terrk context configuration**  
