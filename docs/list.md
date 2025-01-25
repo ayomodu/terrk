@@ -62,7 +62,7 @@ terrk list workspaces --project-id
 ```
 
 ### Required Parameters
-```-p, --project-id```
+```-p, --project-id```  
     Project ID to filter results by 
 
 ### Optional Parameters
