@@ -7,8 +7,8 @@
 ## terrk apply workspace
 
 ```
-terrk apply workspace  --file 
-                       --help
+terrk apply workspace --file 
+                      
 ```
 
 ### Required Parameters

@@ -1,4 +1,4 @@
-# Commands 
+# Terrk Commands 
 | Name                        |  Description                                          |
 | -------------------------   |  ---------------------------------------------------- |
 | [terrk apply](apply.md)     |  Create resource using a yaml or xlsx file            |
