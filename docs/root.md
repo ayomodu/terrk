@@ -1,6 +1,6 @@
 # Commands 
 | Name         |  Description                                          |
-| ------------    ---------------------------------------------------- |
+| ------------ |  ---------------------------------------------------- |
 | terrk apply  |  Create resource using a yaml or xlsx file            |
 | terrk config |  Manage context configuration                         |
 | terrk create |  Create resources using command line args             |
