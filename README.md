@@ -111,6 +111,7 @@ Produces the output below
 | --- | ----------------------- | ------------------- | -------- |
 | 1   |         newlinux        | ws-PCv9RdRm8ekwMLMc |  local   |
 | 2   |           init          | ws-uBbwUzJpvdjcgkRm |  local   |
+| 3   |           test          | ws-vPbwGzJherjklsFx |  agent   |
 
 
 
