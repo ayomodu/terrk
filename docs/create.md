@@ -40,7 +40,7 @@ terrk create agent NAME [OPTIONS]
 
 ```
 terrk create agenttoken --agent-id
-                         --description
+                        --description
 ```
 
 ### Required Parameters
@@ -52,6 +52,21 @@ terrk create agenttoken --agent-id
    Agent token description. This must be set.
 
 ## terrk create project
+
+**Create Terraform cloud project**
+
+```
+terrk create project NAME --description
+```
+### Required Parameters
+
+```NAME```  
+   The name of the project.
+
+### Optional Parameters
+
+```-d, --description```  
+   Project description.
 
 ## terrk create team
 
